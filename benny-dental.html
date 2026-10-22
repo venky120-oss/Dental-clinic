@@ -1,0 +1,974 @@
+<title>Benny Dental Care</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Benny Dental Care, Karaikudi. Painless treatment, implants, aligners and smile makeovers. Call or WhatsApp to book.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap">
+<style>
+/* Layout: dark clinical hero -> light service grid -> signature before/after slider -> teal trust band -> reviews -> why-us -> dark booking close */
+:root {
+  --accent: #1A7A5E;
+  --accent-strong: #135C47;
+  --accent-light: #E3F1EC;
+  --accent-2: #D4A853;
+  --accent-2-ink: #2A1F08;
+  --bg: #F7F9F8;
+  --bg-alt: #EDEEF0;
+  --surface: #FFFFFF;
+  --fg: #0E1A16;
+  --fg-muted: #4A5A54;
+  --line: #DCE3E0;
+  --ink: #0E1A16;          /* dark bands stay dark in both themes */
+  --ink-2: #13221C;
+  --on-ink: #E8F0EC;
+  --on-ink-muted: #9DB2A9;
+  --shadow: 0 18px 40px -18px rgba(14, 26, 22, .28);
+  --font-display: "Cormorant Garant", "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-body: "DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;  --radius: 18px;
+  --gutter-l: max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --accent: #3FB58D; --accent-strong: #5CCBA4; --accent-light: #15302A;
+    --bg: #0A110E; --bg-alt: #0F1814; --surface: #162019;
+    --fg: #E8F0EC; --fg-muted: #A3B5AD; --line: #24332C;
+    --ink: #060B09; --ink-2: #0D1712;
+    --shadow: 0 18px 40px -18px rgba(0, 0, 0, .7);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --accent: #3FB58D; --accent-strong: #5CCBA4; --accent-light: #15302A;
+  --bg: #0A110E; --bg-alt: #0F1814; --surface: #162019;
+  --fg: #E8F0EC; --fg-muted: #A3B5AD; --line: #24332C;
+  --ink: #060B09; --ink-2: #0D1712;
+  --shadow: 0 18px 40px -18px rgba(0, 0, 0, .7);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.6;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+  z-index: 60; background: var(--ink);
+}
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600; line-height: 1.08; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 3px; border-radius: 6px; }
+
+.wrap { max-width: 1180px; margin: 0 auto; padding-left: var(--gutter-l); padding-right: var(--gutter-r); }
+section { padding-block: clamp(64px, 9vw, 112px); }
+.eyebrow {
+  font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--accent);
+}
+.section-head { display: grid; gap: 14px; max-width: 640px; margin-bottom: clamp(36px, 5vw, 56px); }
+.section-head h2 { font-size: clamp(34px, 5vw, 54px); }
+.section-head h2 em { color: var(--accent); font-style: italic; }
+.section-head p { color: var(--fg-muted); font-size: 17px; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 15px 26px; border-radius: 999px; font: 600 15px/1 var(--font-body);
+  text-decoration: none; border: 1.5px solid transparent; cursor: pointer;
+  transition: transform .2s, background .2s, border-color .2s, box-shadow .2s;
+}
+.btn svg { width: 18px; height: 18px; flex: none; }
+.btn:hover { transform: translateY(-2px); }
+.btn-gold { background: var(--accent-2); color: var(--accent-2-ink); box-shadow: 0 10px 28px -10px rgba(212, 168, 83, .7); }
+.btn-gold:hover { background: #E0B864; }
+.btn-ghost { border-color: rgba(232, 240, 236, .35); color: var(--on-ink); }
+.btn-ghost:hover { border-color: var(--on-ink); background: rgba(232, 240, 236, .06); }
+.btn-accent { background: var(--accent); color: #fff; }
+.btn-accent:hover { background: var(--accent-strong); }
+
+/* Nav */
+nav.site {
+  position: fixed; top: env(safe-area-inset-top, 0px); left: 0; right: 0; z-index: 50;
+  transition: background .3s, box-shadow .3s, padding .3s;
+}
+nav.site .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-block: 20px; transition: padding .3s; }
+nav.site.scrolled { background: var(--surface); box-shadow: 0 6px 24px -14px rgba(0, 0, 0, .35); }
+nav.site.scrolled .wrap { padding-block: 12px; }
+.logo { font-family: var(--font-display); font-size: 27px; font-weight: 700; text-decoration: none; color: var(--on-ink); letter-spacing: .01em; display: flex; align-items: center; gap: 10px; }
+.logo span { color: var(--accent-2); font-style: italic; font-weight: 600; }
+.logo-mark { width: 30px; height: 30px; }
+nav.site.scrolled .logo { color: var(--fg); }
+nav.site.scrolled .logo span { color: var(--accent); }
+.nav-links { display: flex; align-items: center; gap: 32px; list-style: none; margin: 0; padding: 0; }
+.nav-links a { text-decoration: none; font-size: 15px; font-weight: 500; color: var(--on-ink-muted); transition: color .2s; }
+.nav-links a:hover { color: var(--on-ink); }
+nav.site.scrolled .nav-links a { color: var(--fg-muted); }
+nav.site.scrolled .nav-links a:hover { color: var(--accent); }
+.nav-cta { padding: 12px 22px; font-size: 14px; }
+.hamburger { display: none; background: none; border: 0; padding: 8px; cursor: pointer; color: var(--on-ink); }
+nav.site.scrolled .hamburger { color: var(--fg); }
+.hamburger svg { width: 26px; height: 26px; display: block; }
+
+/* Hero */
+.hero {
+  position: relative; background: var(--ink); color: var(--on-ink); overflow: hidden;
+  min-height: min(100vh, 900px); display: flex; align-items: center;
+  padding-block: calc(120px + env(safe-area-inset-top, 0px)) 80px;
+}
+.hero::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(60% 70% at 88% 8%, rgba(26, 122, 94, .55), transparent 65%),
+              radial-gradient(40% 50% at 0% 100%, rgba(212, 168, 83, .12), transparent 70%);
+}
+.hero::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .5;
+  background-image: linear-gradient(rgba(232, 240, 236, .05) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(232, 240, 236, .05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse at 70% 30%, #000 20%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at 70% 30%, #000 20%, transparent 75%);
+}
+.hero .wrap { position: relative; z-index: 1; width: 100%; display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
+.hero-copy { display: grid; gap: 26px; min-width: 0; }
+.badge {
+  justify-self: start; display: inline-flex; align-items: center; gap: 10px;
+  padding: 8px 16px 8px 12px; border-radius: 999px; font-size: 13px; font-weight: 500;
+  background: rgba(63, 181, 141, .12); border: 1px solid rgba(63, 181, 141, .35); color: #9FE3C9;
+}
+.pulse { width: 8px; height: 8px; border-radius: 50%; background: #3FB58D; position: relative; }
+.pulse::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid #3FB58D; animation: pulse 1.8s ease-out infinite; }
+@keyframes pulse { from { transform: scale(.6); opacity: 1; } to { transform: scale(1.8); opacity: 0; } }
+.hero h1 { font-size: clamp(44px, 7.2vw, 84px); font-weight: 600; letter-spacing: -.01em; }
+.hero h1 em { font-style: italic; color: var(--accent-2); font-weight: 400; }
+.hero-sub { font-size: clamp(16px, 1.6vw, 19px); color: var(--on-ink-muted); max-width: 52ch; font-weight: 300; }
+.hero-sub strong { color: var(--on-ink); font-weight: 500; }
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; }
+.hero-stats { display: flex; flex-wrap: wrap; gap: clamp(20px, 4vw, 44px); padding-top: 26px; border-top: 1px solid rgba(232, 240, 236, .12); }
+.hero-stats div { display: grid; gap: 2px; }
+.hero-stats b { font-family: var(--font-display); font-size: clamp(32px, 3.6vw, 42px); font-weight: 600; line-height: 1; color: var(--on-ink); font-variant-numeric: tabular-nums; }
+.hero-stats b small { color: var(--accent-2); font-size: .6em; }
+.hero-stats span { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--on-ink-muted); }
+
+.hero-visual { position: relative; min-width: 0; }
+.glass {
+  position: relative; border-radius: 26px; padding: 28px;
+  background: linear-gradient(160deg, rgba(232, 240, 236, .1), rgba(232, 240, 236, .03));
+  border: 1px solid rgba(232, 240, 236, .14);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 40px 80px -30px rgba(0, 0, 0, .6);
+  display: grid; gap: 20px;
+}
+.glass-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.glass-top .label { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--on-ink-muted); }
+.chip { font-size: 12px; font-weight: 600; padding: 5px 11px; border-radius: 999px; background: rgba(63, 181, 141, .18); color: #9FE3C9; }
+.glass h3 { font-size: 30px; color: var(--on-ink); }
+.glass h3 em { color: var(--accent-2); }
+.plan-steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 4px; }
+.plan-steps li { display: grid; grid-template-columns: 26px 1fr auto; gap: 12px; align-items: center; padding: 12px 0; border-bottom: 1px dashed rgba(232, 240, 236, .12); font-size: 14px; }
+.plan-steps li:last-child { border-bottom: 0; }
+.plan-steps .tick { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: rgba(63, 181, 141, .2); color: #9FE3C9; }
+.plan-steps .tick.todo { background: rgba(232, 240, 236, .08); color: var(--on-ink-muted); }
+.plan-steps .tick svg { width: 14px; height: 14px; }
+.plan-steps em { font-style: normal; color: var(--on-ink-muted); font-size: 13px; }
+.progress { height: 6px; border-radius: 99px; background: rgba(232, 240, 236, .1); overflow: hidden; }
+.progress i { display: block; height: 100%; width: 75%; border-radius: inherit; background: linear-gradient(90deg, var(--accent), #3FB58D, var(--accent-2)); }
+.glass-foot { display: flex; justify-content: space-between; font-size: 13px; color: var(--on-ink-muted); }
+.glass-foot b { color: var(--on-ink); }
+.float-pill {
+  position: absolute; display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 16px; border-radius: 999px; font-size: 13px; font-weight: 600; white-space: nowrap;
+  background: var(--surface); color: var(--fg); box-shadow: var(--shadow);
+  animation: bob 5s ease-in-out infinite;
+}
+.float-pill svg { width: 16px; height: 16px; color: var(--accent); }
+.float-pill.p1 { top: -22px; left: -28px; }
+.float-pill.p2 { bottom: -20px; right: -16px; animation-delay: -2.5s; }
+.float-pill.p2 svg { color: var(--accent-2); }
+@keyframes bob { 50% { transform: translateY(-8px); } }
+
+/* Services */
+.services { background: var(--surface); }
+.service-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.service {
+  display: grid; align-content: start; gap: 14px; padding: 30px 26px 28px;
+  border-radius: var(--radius); background: var(--bg); border: 1px solid var(--line);
+  transition: transform .25s, border-color .25s, box-shadow .25s; min-width: 0;
+}
+.service:hover { transform: translateY(-6px); border-color: var(--accent); box-shadow: var(--shadow); }
+.service .icon { width: 56px; height: 56px; border-radius: 16px; background: var(--accent-light); color: var(--accent); display: grid; place-items: center; }
+.service .icon svg { width: 28px; height: 28px; }
+.service h3 { font-size: 26px; margin-top: 6px; }
+.service p { color: var(--fg-muted); font-size: 15px; }
+.service .meta { margin-top: 6px; font-size: 13px; font-weight: 600; color: var(--accent); display: flex; align-items: center; gap: 6px; }
+
+/* Before / After */
+.results { background: var(--bg); }
+.results .wrap { display: grid; gap: 0; }
+.compare-shell { display: grid; grid-template-columns: 1fr 300px; gap: 28px; align-items: stretch; }
+.compare {
+  position: relative; aspect-ratio: 16 / 10; max-width: 100%; border-radius: 22px; overflow: hidden;
+  cursor: ew-resize; user-select: none; -webkit-user-select: none; touch-action: pan-y;
+  box-shadow: var(--shadow); background: #2a1414;
+}
+.compare-before, .compare-after { position: absolute; inset: 0; }
+.compare-before svg, .compare-after svg { width: 100%; height: 100%; display: block; }
+.compare-after { clip-path: inset(0 50% 0 0); }
+.compare-line { position: absolute; top: 0; bottom: 0; left: 50%; width: 3px; margin-left: -1.5px; background: #fff; box-shadow: 0 0 12px rgba(0, 0, 0, .35); pointer-events: none; }
+.compare-handle {
+  position: absolute; top: 50%; left: 50%; width: 56px; height: 56px; margin: -28px 0 0 -28px;
+  border-radius: 50%; background: #fff; color: #0E1A16; display: grid; place-items: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .35); border: 0; cursor: ew-resize; padding: 0;
+}
+.compare-handle svg { width: 26px; height: 26px; }
+.compare.animating .compare-after { transition: clip-path 1.4s cubic-bezier(.65, 0, .35, 1); }
+.compare.animating .compare-line, .compare.animating .compare-handle { transition: left 1.4s cubic-bezier(.65, 0, .35, 1); }
+.compare-tag {
+  position: absolute; bottom: 16px; padding: 7px 14px; border-radius: 999px; font-size: 12px; font-weight: 600;
+  letter-spacing: .12em; text-transform: uppercase; background: rgba(14, 26, 22, .72); color: #fff;
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); pointer-events: none;
+}
+.compare-tag.after { left: 16px; background: rgba(26, 122, 94, .9); }
+.compare-tag.before { right: 16px; }
+.drag-hint { margin-top: 16px; display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--fg-muted); }
+.drag-hint svg { width: 20px; height: 20px; color: var(--accent); }
+.case-card { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 28px; display: grid; gap: 18px; align-content: start; }
+.case-card h3 { font-size: 28px; }
+.case-card dl { margin: 0; display: grid; gap: 0; }
+.case-card dl div { display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
+.case-card dt { color: var(--fg-muted); }
+.case-card dd { margin: 0; font-weight: 600; text-align: right; }
+.case-card .note { font-size: 13px; color: var(--fg-muted); }
+.case-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.case-tab {
+  font: 600 14px/1 var(--font-body); padding: 11px 18px; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--line); background: var(--surface); color: var(--fg-muted); transition: background .2s, color .2s, border-color .2s;
+}
+.case-tab:hover { border-color: var(--accent); color: var(--fg); }
+.case-tab[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+/* Trust bar */
+.trust { background: linear-gradient(120deg, #135C47, #1A7A5E 55%, #23946F); color: #fff; padding-block: clamp(48px, 7vw, 76px); }
+.trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.trust-grid div { display: grid; gap: 6px; text-align: center; padding-inline: 8px; }
+.trust-grid div + div { border-left: 1px solid rgba(255, 255, 255, .18); }
+.trust-num { font-family: var(--font-display); font-size: clamp(44px, 6vw, 68px); font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
+.trust-num sup { font-size: .45em; color: #F0D08F; vertical-align: .9em; margin-left: 2px; }
+.trust-label { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: rgba(255, 255, 255, .78); }
+
+/* Testimonials */
+.reviews { background: var(--surface); }
+.review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.review { display: flex; flex-direction: column; gap: 18px; padding: 30px; border-radius: var(--radius); background: var(--bg); border: 1px solid var(--line); min-width: 0; }
+.stars { display: flex; gap: 3px; color: var(--accent-2); }
+.stars svg { width: 18px; height: 18px; }
+.review blockquote { margin: 0; font-family: var(--font-display); font-style: italic; font-size: 21px; line-height: 1.4; flex: 1; }
+.who { display: flex; align-items: center; gap: 14px; padding-top: 18px; border-top: 1px solid var(--line); }
+.avatar { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; font-family: var(--font-display); font-weight: 700; font-size: 20px; color: #fff; background: var(--accent); flex: none; }
+.avatar.gold { background: #B88A35; }
+.avatar.deep { background: #24423A; }
+.who b { display: block; font-size: 15px; }
+.who span { font-size: 13px; color: var(--fg-muted); }
+.sample-note { margin-top: 22px; font-size: 13px; color: var(--fg-muted); display: flex; align-items: center; gap: 8px; }
+.sample-note b { color: var(--accent-2); font-weight: 600; }
+
+/* Why us */
+.why { background: var(--bg); }
+.why .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 88px); align-items: center; }
+.why-visual {
+  position: relative; aspect-ratio: 4 / 5; max-width: 100%; border-radius: 28px; background: var(--ink); overflow: visible;
+}
+.why-visual .inner { position: absolute; inset: 0; border-radius: inherit; overflow: hidden;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; padding: 24px; text-align: center;
+  background: radial-gradient(70% 60% at 50% 30%, rgba(26, 122, 94, .45), transparent 70%), var(--ink); }
+.why-visual .inner svg { width: clamp(72px, 22%, 120px); height: auto; flex: none; }
+.why-visual .doc { color: var(--on-ink); display: grid; gap: 4px; }
+.why-visual .doc b { font-family: var(--font-display); font-size: 26px; font-weight: 600; }
+.why-visual .doc span { font-size: 13px; color: var(--on-ink-muted); letter-spacing: .04em; }
+.why-badge {
+  position: absolute; display: flex; align-items: center; gap: 12px; padding: 14px 18px; border-radius: 16px;
+  background: var(--surface); color: var(--fg); box-shadow: var(--shadow); animation: bob 6s ease-in-out infinite;
+}
+.why-badge .ic { width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center; background: var(--accent-light); color: var(--accent); flex: none; }
+.why-badge .ic svg { width: 20px; height: 20px; }
+.why-badge b { display: block; font-size: 14px; }
+.why-badge span { font-size: 12px; color: var(--fg-muted); }
+.why-badge.b1 { top: 9%; right: -36px; }
+.why-badge.b2 { top: 46%; left: -40px; animation-delay: -3s; }
+.why-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 30px; }
+.why-list li { display: grid; grid-template-columns: 74px 1fr; gap: 18px; align-items: start; }
+.why-num { font-family: var(--font-display); font-size: 58px; font-weight: 700; line-height: .9; color: transparent; -webkit-text-stroke: 1.4px var(--accent); }
+.why-list h3 { font-size: 25px; margin-bottom: 6px; }
+.why-list p { color: var(--fg-muted); font-size: 15px; }
+
+/* CTA */
+.cta { position: relative; background: var(--ink); color: var(--on-ink); overflow: hidden; text-align: center; }
+.cta::before { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(50% 70% at 50% 0%, rgba(26, 122, 94, .5), transparent 70%); }
+.cta .wrap { position: relative; display: grid; justify-items: center; gap: 24px; }
+.cta h2 { font-size: clamp(40px, 6.4vw, 76px); max-width: 15ch; }
+.cta h2 em { color: var(--accent-2); font-weight: 400; }
+.cta p.lead { color: var(--on-ink-muted); max-width: 52ch; font-size: 17px; }
+.offers { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.offers span { font-size: 13px; font-weight: 500; padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(232, 240, 236, .2); color: var(--on-ink); }
+.cta-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+.contact-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px 40px; margin-top: 10px; padding-top: 30px; border-top: 1px solid rgba(232, 240, 236, .12); width: 100%; }
+.contact-item { display: flex; align-items: flex-start; gap: 12px; text-align: left; min-width: 0; }
+.contact-item .ic { width: 40px; height: 40px; border-radius: 12px; background: rgba(232, 240, 236, .07); color: var(--accent-2); display: grid; place-items: center; flex: none; }
+.contact-item .ic svg { width: 19px; height: 19px; }
+.contact-item small { display: block; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--on-ink-muted); }
+.contact-item b { font-weight: 500; user-select: all; -webkit-user-select: all; }
+.copy-btn { margin-left: 8px; background: none; border: 1px solid rgba(232, 240, 236, .25); color: var(--on-ink-muted); font: 500 11px/1 var(--font-body); padding: 5px 9px; border-radius: 99px; cursor: pointer; vertical-align: 2px; }
+.copy-btn:hover { color: var(--on-ink); border-color: var(--on-ink); }
+
+/* Footer */
+footer { background: #050907; color: #8FA39A; padding-block: 48px 28px; }
+footer .top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 22px; padding-bottom: 28px; border-bottom: 1px solid rgba(232, 240, 236, .08); }
+footer .logo { color: #E8F0EC; }
+footer ul { list-style: none; display: flex; flex-wrap: wrap; gap: 26px; margin: 0; padding: 0; }
+footer ul a { text-decoration: none; font-size: 14px; }
+footer ul a:hover { color: #E8F0EC; }
+footer .bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-top: 22px; font-size: 13px; }
+
+/* Mobile action bar */
+.mobile-bar { display: none; }
+
+/* Reveal: content is visible at rest; JS only hides what is still below the fold */
+.reveal { transition: opacity .8s ease, transform .8s ease; }
+.reveal.pending { opacity: 0; transform: translateY(28px); }
+
+@media (max-width: 1024px) {
+  .service-grid { grid-template-columns: repeat(2, 1fr); }
+  .compare-shell { grid-template-columns: 1fr; }
+  .why-badge.b1 { right: -12px; }
+  .why-badge.b2 { left: -12px; }
+}
+@media (max-width: 860px) {
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: block; }
+  nav.site.open { background: var(--surface); box-shadow: 0 6px 24px -14px rgba(0, 0, 0, .35); }
+  nav.site.open .logo { color: var(--fg); }
+  nav.site.open .logo span { color: var(--accent); }
+  nav.site.open .hamburger { color: var(--fg); }
+  nav.site.open .nav-links {
+    display: flex; flex-direction: column; align-items: stretch; gap: 0;
+    position: absolute; top: 100%; left: 0; right: 0; background: var(--surface);
+    padding: 8px var(--gutter-r) 20px var(--gutter-l); border-top: 1px solid var(--line);
+    box-shadow: 0 20px 30px -20px rgba(0, 0, 0, .4);
+  }
+  nav.site.open .nav-links a { display: block; padding: 14px 4px; font-size: 17px; color: var(--fg); border-bottom: 1px solid var(--line); }
+  nav.site.open .nav-links li.m-cta { display: block; padding-top: 16px; }
+  nav.site.open .nav-links li.m-cta a { border: 0; color: #fff; text-align: center; }
+  .hero { min-height: 0; padding-block: calc(110px + env(safe-area-inset-top, 0px)) 64px; }
+  .hero .wrap { grid-template-columns: 1fr; }
+  .hero-visual { display: none; }
+  .trust-grid { grid-template-columns: repeat(2, 1fr); row-gap: 36px; }
+  .trust-grid div + div { border-left: 0; }
+  .review-grid { grid-template-columns: 1fr; }
+  .why .wrap { grid-template-columns: 1fr; }
+  .why-visual { aspect-ratio: 16 / 11; }
+  .why-badge { display: none; }
+  .mobile-bar {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 55;
+    padding: 10px var(--gutter-r) calc(10px + env(safe-area-inset-bottom, 0px)) var(--gutter-l);
+    background: var(--surface); border-top: 1px solid var(--line); box-shadow: 0 -10px 30px -18px rgba(0, 0, 0, .4);
+    transform: translateY(110%); transition: transform .35s;
+  }
+  .mobile-bar.show { transform: none; }
+  .mobile-bar .btn { padding: 14px 10px; }
+  .mobile-bar .btn-wa { background: #1F9D55; color: #fff; }
+  footer { padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px)); }
+}
+@media (min-width: 861px) { .nav-links li.m-cta { display: none; } }
+@media (max-width: 560px) {
+  .service-grid { grid-template-columns: 1fr; }
+  .hero-ctas .btn { flex: 1 1 100%; }
+  .cta-btns { width: 100%; }
+  .cta-btns .btn { flex: 1 1 100%; }
+  .compare { aspect-ratio: 4 / 3; }
+  .why-list li { grid-template-columns: 54px 1fr; }
+  .why-num { font-size: 44px; }
+  .contact-row { justify-content: flex-start; }
+}
+/* Motion: hero entrance, ambient bubbles, hover feedback, call-button attention */
+@keyframes rise { from { opacity: 0; transform: translateY(24px); } }
+@keyframes slideIn { from { opacity: 0; transform: translateX(40px) scale(.96); } }
+@keyframes pop { from { opacity: 0; transform: scale(.4); } 70% { opacity: 1; transform: scale(1.1); } to { opacity: 1; transform: scale(1); } }
+@keyframes fillBar { from { width: 0; } }
+@keyframes draw { from { transform: scaleX(0); } }
+@keyframes shine { 0%, 65% { transform: translateX(-160%) skewX(-20deg); } 100% { transform: translateX(360%) skewX(-20deg); } }
+@keyframes floatY { 50% { transform: translateY(-12px) rotate(-3deg); } }
+@keyframes twinkle { 0%, 100% { opacity: 0; transform: scale(.3) rotate(0deg); } 50% { opacity: 1; transform: scale(1) rotate(90deg); } }
+@keyframes drift { 0% { transform: translateY(0) translateX(0); opacity: 0; } 12% { opacity: .8; } 50% { transform: translateY(-55vh) translateX(18px); } 100% { transform: translateY(-110vh) translateX(-10px); opacity: 0; } }
+@keyframes ring { 0% { box-shadow: 0 0 0 0 rgba(212, 168, 83, .6); } 70%, 100% { box-shadow: 0 0 0 16px rgba(212, 168, 83, 0); } }
+
+.hero-copy > * { animation: rise .9s cubic-bezier(.2, .7, .2, 1) both; }
+.hero-copy > :nth-child(1) { animation-delay: .1s; }
+.hero-copy > :nth-child(2) { animation-delay: .25s; }
+.hero-copy > :nth-child(3) { animation-delay: .4s; }
+.hero-copy > :nth-child(4) { animation-delay: .55s; }
+.hero-copy > :nth-child(5) { animation-delay: .7s; }
+.hero h1 em { position: relative; display: inline-block; }
+.hero h1 em::after {
+  content: ""; position: absolute; left: 2%; right: 2%; bottom: .06em; height: .07em; border-radius: 99px;
+  background: var(--accent-2); opacity: .75; transform-origin: left; animation: draw .8s 1.1s cubic-bezier(.6, 0, .2, 1) both;
+}
+.hero-visual .glass { animation: slideIn 1s .45s cubic-bezier(.2, .7, .2, 1) both; }
+.plan-steps li { animation: rise .5s both; }
+.plan-steps li:nth-child(1) { animation-delay: .9s; }
+.plan-steps li:nth-child(2) { animation-delay: 1.05s; }
+.plan-steps li:nth-child(3) { animation-delay: 1.2s; }
+.plan-steps li:nth-child(4) { animation-delay: 1.35s; }
+.progress i { animation: fillBar 1.6s 1.2s cubic-bezier(.2, .7, .2, 1) both; }
+.float-pill.p1 { animation: pop .6s 1.3s both, bob 5s 1.9s ease-in-out infinite; }
+.float-pill.p2 { animation: pop .6s 1.5s both, bob 5s 2.1s ease-in-out infinite; }
+
+.bubbles { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.bubbles span {
+  position: absolute; bottom: -30px; left: var(--x); width: var(--s); height: var(--s); border-radius: 50%;
+  background: radial-gradient(circle at 32% 30%, rgba(255, 255, 255, .55), rgba(63, 181, 141, .12) 60%);
+  border: 1px solid rgba(255, 255, 255, .14); opacity: 0;
+  animation: drift var(--d) linear var(--delay) infinite;
+}
+
+.btn-gold { position: relative; overflow: hidden; isolation: isolate; }
+.btn-gold::after {
+  content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 35%; z-index: -1; pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .6), transparent);
+  transform: translateX(-160%) skewX(-20deg); animation: shine 4s 2s ease-in-out infinite;
+}
+.cta .btn-gold, .mobile-bar .btn-gold { animation: ring 2.4s ease-out infinite; }
+
+.service .icon { transition: transform .45s cubic-bezier(.3, 1.6, .5, 1), background .3s, color .3s; }
+.service:hover .icon { transform: rotate(-8deg) scale(1.12); background: var(--accent); color: #fff; }
+.review { transition: transform .3s, box-shadow .3s, border-color .3s; }
+.review:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: var(--accent); }
+.why-num { transition: color .5s; }
+.why-list li:hover .why-num { color: var(--accent); }
+.case-tab { transition: background .25s, color .25s, border-color .25s, transform .2s; }
+.case-tab:active { transform: scale(.95); }
+
+.why-visual .inner svg { animation: floatY 5s ease-in-out infinite; }
+.spark {
+  position: absolute; width: 16px; height: 16px; background: var(--accent-2); opacity: 0;
+  clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%);
+  animation: twinkle 3.2s ease-in-out infinite;
+}
+.spark.s1 { top: 18%; left: 26%; }
+.spark.s2 { top: 28%; right: 24%; width: 11px; height: 11px; animation-delay: 1.1s; }
+.spark.s3 { top: 52%; left: 20%; width: 9px; height: 9px; animation-delay: 2.1s; background: #fff; }
+
+@media (prefers-reduced-motion: reduce) {
+  .bubbles, .spark { display: none; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+  .reveal.pending { opacity: 1; transform: none; }
+}
+</style>
+
+<!-- Shared icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8zm8.4-18.2A11.8 11.8 0 0 0 1.7 17.8L0 24l6.3-1.7a11.8 11.8 0 0 0 5.7 1.4A11.8 11.8 0 0 0 20.4 3.6z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-tooth" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.5C10.5 4 8.6 3 6.8 3 4.2 3 3 5.2 3 7.6c0 2.6 1.1 4.2 1.7 6.6.6 2.6.8 6.8 2.7 6.8 1.8 0 1.8-4.6 4.6-4.6s2.8 4.6 4.6 4.6c1.9 0 2.1-4.2 2.7-6.8.6-2.4 1.7-4 1.7-6.6C21 5.2 19.8 3 17.2 3c-1.8 0-3.7 1-5.2 2.5z"/></symbol>
+</svg>
+
+<nav class="site" id="nav" aria-label="Main">
+  <div class="wrap">
+    <a href="#top" class="logo" aria-label="Benny Dental Care home">
+      <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="16" fill="#1A7A5E"/><path d="M16 10.2c-1.2-1.1-2.6-1.8-4-1.8-2 0-3 1.6-3 3.4 0 2 .9 3.2 1.3 5 .5 2 .6 5.2 2 5.2s1.4-3.5 3.7-3.5 2.3 3.5 3.7 3.5 1.5-3.2 2-5.2c.4-1.8 1.3-3 1.3-5 0-1.8-1-3.4-3-3.4-1.4 0-2.8.7-4 1.8z" fill="#F7F4EA"/></svg>
+      Benny <span>Dental</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#results">Results</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li class="m-cta"><a href="#contact" class="btn btn-accent">Book Appointment</a></li>
+    </ul>
+    <a href="#contact" class="btn btn-accent nav-cta">Book Appointment</a>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path id="hbPath" d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="bubbles" aria-hidden="true">
+    <span style="--x:8%;--s:14px;--d:16s;--delay:0s"></span>
+    <span style="--x:22%;--s:8px;--d:12s;--delay:3s"></span>
+    <span style="--x:38%;--s:20px;--d:19s;--delay:6s"></span>
+    <span style="--x:55%;--s:10px;--d:14s;--delay:1.5s"></span>
+    <span style="--x:68%;--s:16px;--d:17s;--delay:8s"></span>
+    <span style="--x:80%;--s:7px;--d:11s;--delay:4.5s"></span>
+    <span style="--x:91%;--s:12px;--d:15s;--delay:10s"></span>
+    <span style="--x:47%;--s:6px;--d:10s;--delay:12s"></span>
+  </div>
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="badge"><span class="pulse"></span>Open today · 9:00 AM – 8:00 PM</span>
+      <h1>Your best smile, <em>without</em> the fear.</h1>
+      <p class="hero-sub">Gentle, painless dentistry in Karaikudi by <strong>Dr. Benny, BDS, MDS</strong>. Digital X-rays, sterilised single-use kits and clear pricing before any treatment begins.</p>
+      <div class="hero-ctas">
+        <a href="tel:+919876543210" class="btn btn-gold"><svg><use href="#i-phone"/></svg>Call +91 98765 43210</a>
+        <a href="https://wa.me/919876543210?text=Hi%20Benny%20Dental%2C%20I%27d%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener" class="btn btn-ghost"><svg><use href="#i-wa"/></svg>WhatsApp Us</a>
+      </div>
+      <div class="hero-stats">
+        <div><b>12<small>+</small></b><span>Years experience</span></div>
+        <div><b>2,500<small>+</small></b><span>Patients treated</span></div>
+        <div><b>4.9<small>★</small></b><span>Google rating</span></div>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="glass">
+        <div class="glass-top"><span class="label">Treatment plan · Sample</span><span class="chip">On track</span></div>
+        <h3>Smile <em>Makeover</em></h3>
+        <ul class="plan-steps">
+          <li><span class="tick"><svg><use href="#i-check"/></svg></span>Consultation &amp; digital X-ray<em>Day 1</em></li>
+          <li><span class="tick"><svg><use href="#i-check"/></svg></span>Scaling &amp; polishing<em>Day 1</em></li>
+          <li><span class="tick"><svg><use href="#i-check"/></svg></span>Laser whitening, 3 shades<em>Day 7</em></li>
+          <li><span class="tick todo"><svg><use href="#i-clock"/></svg></span>Composite bonding<em>Day 14</em></li>
+        </ul>
+        <div class="progress"><i></i></div>
+        <div class="glass-foot"><span>3 of 4 sittings done</span><span>Pain score <b>0 / 10</b></span></div>
+      </div>
+      <span class="float-pill p1"><svg><use href="#i-shield"/></svg>No Pain Guarantee</span>
+      <span class="float-pill p2"><svg><use href="#i-card"/></svg>0% EMI Available</span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="services" id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">What we treat</span>
+        <h2>Care for every <em>stage</em> of your smile</h2>
+        <p>Each treatment starts with a free consultation and a written estimate, so you know the cost and the number of sittings before we begin.</p>
+      </div>
+      <div class="service-grid">
+        <article class="service reveal">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.5C10.5 4 8.6 3 6.8 3 4.2 3 3 5.2 3 7.6c0 2.6 1.1 4.2 1.7 6.6.6 2.6.8 6.8 2.7 6.8 1.8 0 1.8-4.6 4.6-4.6s2.8 4.6 4.6 4.6c1.9 0 2.1-4.2 2.7-6.8.6-2.4 1.7-4 1.7-6.6C21 5.2 19.8 3 17.2 3c-1.8 0-3.7 1-5.2 2.5z"/><path d="M19 1v3M17.5 2.5h3"/></svg></div>
+          <h3>Teeth Whitening</h3>
+          <p>In-clinic laser whitening that lifts tea, coffee and paan stains by up to 8 shades in a single 60-minute visit.</p>
+          <span class="meta">1 sitting · 60 min</span>
+        </article>
+        <article class="service reveal">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10c0 3-1.5 5-5 5S7 6 7 3z"/><path d="M9 10h6M9.5 13h5M10 16h4M11 19h2M12 8v14"/></svg></div>
+          <h3>Dental Implants</h3>
+          <p>Titanium implants that replace missing teeth permanently and chew like natural teeth. Guided placement with 3D CBCT scans.</p>
+          <span class="meta">Lifetime implant warranty</span>
+        </article>
+        <article class="service reveal">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="4" height="6" rx="1"/><rect x="8" y="8" width="4" height="8" rx="1"/><rect x="14" y="8" width="4" height="8" rx="1"/><path d="M20 9.5v5M1 12h22"/></svg></div>
+          <h3>Braces &amp; Aligners</h3>
+          <p>Metal, ceramic or invisible clear aligners to fix crowding, gaps and bite problems for teens and adults.</p>
+          <span class="meta">Free orthodontic scan</span>
+        </article>
+        <article class="service reveal">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 10c2.5 3 11.5 3 14 0"/><path d="M7 11.2v1.6M10 12v2M14 12v2M17 11.2v1.6"/><path d="M12 2l1 2.4 2.5.4-1.8 1.7.4 2.5L12 7.8 9.9 9l.4-2.5-1.8-1.7 2.5-.4z"/><path d="M4 16c3 4 13 4 16 0"/></svg></div>
+          <h3>Smile Makeover</h3>
+          <p>Veneers, bonding and gum contouring planned together, with a digital preview of your new smile before treatment.</p>
+          <span class="meta">Digital smile preview</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="results" id="results">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Smile results</span>
+        <h2>See the <em>difference</em> for yourself</h2>
+        <p>Drag the handle to compare a smile before and after treatment.</p>
+      </div>
+      <div class="compare-shell">
+        <div class="reveal" style="min-width:0">
+          <div class="case-tabs" id="caseTabs" role="tablist" aria-label="Treatment cases"></div>
+          <div class="compare" id="compareSlider" role="slider" aria-label="Before and after comparison" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0">
+            <div class="compare-before" id="compareBefore"></div>
+            <div class="compare-after" id="compareAfter"></div>
+            <div class="compare-line" id="compareLine"></div>
+            <button class="compare-handle" id="compareHandle" tabindex="-1" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6-6 6 6 6M15 6l6 6-6 6"/></svg>
+            </button>
+            <span class="compare-tag after">After</span>
+            <span class="compare-tag before">Before</span>
+          </div>
+          <p class="drag-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V4.5a1.5 1.5 0 0 1 3 0V12M11 11.5v-2a1.5 1.5 0 0 1 3 0V12M14 10.5a1.5 1.5 0 0 1 3 0V12M17 11.5a1.5 1.5 0 0 1 3 0V16a6 6 0 0 1-6 6h-2c-2.8 0-4.5-.9-6-2.4l-3.6-3.6a1.5 1.5 0 0 1 2.1-2.1L8 16"/></svg>Drag or swipe the slider. On a keyboard, use the arrow keys.</p>
+        </div>
+        <aside class="case-card reveal">
+          <span class="eyebrow">Case study</span>
+          <h3 id="caseTitle">Stained, uneven front teeth</h3>
+          <dl id="caseRows">
+            <div><dt>Treatment</dt><dd>Whitening + bonding</dd></div>
+            <div><dt>Sittings</dt><dd>3 visits</dd></div>
+            <div><dt>Duration</dt><dd>14 days</dd></div>
+            <div><dt>Shade change</dt><dd>A3.5 → B1</dd></div>
+          </dl>
+          <p class="note" id="caseNote">Illustration shown. Patient photos are shared at the clinic with consent.</p>
+          <a href="#contact" class="btn btn-accent">Get my smile plan <svg><use href="#i-arrow"/></svg></a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust" aria-label="Clinic in numbers">
+    <div class="wrap trust-grid">
+      <div><span class="trust-num" data-count="2500" data-suffix="+">2500<sup>+</sup></span><span class="trust-label">Smiles transformed</span></div>
+      <div><span class="trust-num" data-count="12" data-suffix="+">12<sup>+</sup></span><span class="trust-label">Years experience</span></div>
+      <div><span class="trust-num" data-count="4.9" data-decimals="1" data-suffix="★">4.9<sup>★</sup></span><span class="trust-label">Google rating</span></div>
+      <div><span class="trust-num" data-count="98" data-suffix="%">98<sup>%</sup></span><span class="trust-label">Patient satisfaction</span></div>
+    </div>
+  </section>
+
+  <section class="reviews" id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Patient stories</span>
+        <h2>Families across Chettinad <em>trust</em> us</h2>
+      </div>
+      <div class="review-grid">
+        <figure class="review reveal" style="margin:0">
+          <div class="stars" aria-label="5 out of 5 stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div>
+          <blockquote>“I was scared of root canals for years. Dr. Benny explained every step and I honestly felt nothing. Finished in two sittings.”</blockquote>
+          <figcaption class="who"><span class="avatar">L</span><div><b>Lakshmi Narayanan</b><span>Root canal · Karaikudi</span></div></figcaption>
+        </figure>
+        <figure class="review reveal" style="margin:0">
+          <div class="stars" aria-label="5 out of 5 stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div>
+          <blockquote>“Got clear aligners before my wedding. Nobody at work noticed I was wearing them, and the EMI made it easy to manage.”</blockquote>
+          <figcaption class="who"><span class="avatar gold">A</span><div><b>Arun Prakash</b><span>Clear aligners · Devakottai</span></div></figcaption>
+        </figure>
+        <figure class="review reveal" style="margin:0">
+          <div class="stars" aria-label="5 out of 5 stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div>
+          <blockquote>“My father can eat properly again after his implants. The clinic is very clean and the staff speak to elders with patience.”</blockquote>
+          <figcaption class="who"><span class="avatar deep">M</span><div><b>Meena Sundaram</b><span>Dental implants · Sivaganga</span></div></figcaption>
+        </figure>
+      </div>
+      <p class="sample-note"><b>Sample reviews.</b> Replace with real Google reviews before going live.</p>
+    </div>
+  </section>
+
+  <section class="why" id="about">
+    <div class="wrap">
+      <div class="why-visual reveal">
+        <div class="inner">
+          <span class="spark s1" aria-hidden="true"></span><span class="spark s2" aria-hidden="true"></span><span class="spark s3" aria-hidden="true"></span>
+          <svg viewBox="0 0 200 220" aria-hidden="true">
+            <defs>
+              <linearGradient id="toothG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9E7E1"/></linearGradient>
+            </defs>
+            <path d="M100 38C88 26 72 18 56 18 32 18 20 38 20 60c0 24 10 38 15 60 6 24 7 82 26 82 17 0 16-48 39-48s22 48 39 48c19 0 20-58 26-82 5-22 15-36 15-60 0-22-12-42-36-42-16 0-32 8-44 20z" fill="url(#toothG)"/>
+          </svg>
+          <div class="doc"><b>Dr. Benny, BDS, MDS</b><span>Prosthodontist &amp; implantologist · 12 years</span></div>
+        </div>
+        <div class="why-badge b1"><span class="ic"><svg><use href="#i-shield"/></svg></span><div><b>ISO Certified</b><span>Class-B autoclave sterilisation</span></div></div>
+        <div class="why-badge b2"><span class="ic"><svg><use href="#i-check"/></svg></span><div><b>Pain-Free Promise</b><span>Computer-guided anaesthesia</span></div></div>
+      </div>
+      <div>
+        <div class="section-head reveal" style="margin-bottom:36px">
+          <span class="eyebrow">Why Benny Dental</span>
+          <h2>Dentistry you can <em>relax</em> into</h2>
+        </div>
+        <ol class="why-list">
+          <li class="reveal"><span class="why-num">01</span><div><h3>Painless by design</h3><p>Numbing gel before every injection, a computer-controlled anaesthetic flow, and breaks whenever you raise your hand.</p></div></li>
+          <li class="reveal"><span class="why-num">02</span><div><h3>Price told upfront</h3><p>A written estimate after your free consultation. No surprise charges, and 0% EMI on treatments above ₹10,000.</p></div></li>
+          <li class="reveal"><span class="why-num">03</span><div><h3>Hospital-grade hygiene</h3><p>Sealed, single-use kits opened in front of you and instruments sterilised in a Class-B autoclave.</p></div></li>
+          <li class="reveal"><span class="why-num">04</span><div><h3>Same-day appointments</h3><p>Call before 12 noon for a toothache and we will see you the same day, including evenings till 8 PM.</p></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" id="contact">
+    <div class="wrap">
+      <span class="eyebrow" style="color:var(--accent-2)">Book your visit</span>
+      <h2>Ready for a smile you <em>love</em> to show?</h2>
+      <p class="lead">Call or message us on WhatsApp. We reply within 10 minutes during clinic hours and will confirm a time that suits you.</p>
+      <div class="cta-btns">
+        <a href="tel:+919876543210" class="btn btn-gold"><svg><use href="#i-phone"/></svg>Call Now</a>
+        <a href="https://wa.me/919876543210?text=Hi%20Benny%20Dental%2C%20I%27d%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener" class="btn btn-ghost"><svg><use href="#i-wa"/></svg>WhatsApp Us</a>
+      </div>
+      <div class="contact-row">
+        <div class="contact-item"><span class="ic"><svg><use href="#i-phone"/></svg></span><div><small>Phone &amp; WhatsApp</small><b id="phoneText">+91 98765 43210</b><button class="copy-btn" id="copyPhone" type="button">Copy</button></div></div>
+        <div class="contact-item"><span class="ic"><svg><use href="#i-pin"/></svg></span><div><small>Address</small><b>12, Anna Salai, Karaikudi, Tamil Nadu 630001</b></div></div>
+        <div class="contact-item"><span class="ic"><svg><use href="#i-clock"/></svg></span><div><small>Timings</small><b>Mon–Sat, 9 AM – 8 PM · Sunday closed</b></div></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="top">
+      <a href="#top" class="logo">Benny <span>Dental</span></a>
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#results">Results</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="bottom">
+      <span>© 2026 Benny Dental Care, Karaikudi. All rights reserved.</span>
+      <span>Gentle care. Honest pricing. Lasting smiles.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="mobile-bar" id="mobileBar">
+  <a href="tel:+919876543210" class="btn btn-gold"><svg><use href="#i-phone"/></svg>Call</a>
+  <a href="https://wa.me/919876543210?text=Hi%20Benny%20Dental%2C%20I%27d%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener" class="btn btn-wa"><svg><use href="#i-wa"/></svg>WhatsApp</a>
+</div>
+
+<script>
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Nav: solid on scroll, hamburger menu, mobile action bar */
+  var nav = document.getElementById('nav');
+  var bar = document.getElementById('mobileBar');
+  var hb = document.getElementById('hamburger');
+  var hbPath = document.getElementById('hbPath');
+  function onScroll() {
+    var y = window.scrollY;
+    nav.classList.toggle('scrolled', y > 60);
+    bar.classList.toggle('show', y > 420);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  function setMenu(open) {
+    nav.classList.toggle('open', open);
+    hb.setAttribute('aria-expanded', open);
+    hb.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    hbPath.setAttribute('d', open ? 'M6 6l12 12M18 6 6 18' : 'M4 7h16M4 12h16M4 17h16');
+  }
+  hb.addEventListener('click', function () { setMenu(!nav.classList.contains('open')); });
+  document.querySelectorAll('#navLinks a').forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
+
+  /* Copy phone number */
+  var copyBtn = document.getElementById('copyPhone');
+  copyBtn.addEventListener('click', function () {
+    var text = document.getElementById('phoneText').textContent;
+    function selectIt() {
+      var r = document.createRange(); r.selectNodeContents(document.getElementById('phoneText'));
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      copyBtn.textContent = 'Selected';
+    }
+    try {
+      navigator.clipboard.writeText(text).then(function () { copyBtn.textContent = 'Copied'; }, selectIt);
+    } catch (e) { selectIt(); }
+    setTimeout(function () { copyBtn.textContent = 'Copy'; }, 2000);
+  });
+
+  /* Before / after cases.
+     To show real clinic photos, put an image path or data: URI in photo.before / photo.after
+     (same size and framing for both). Until then the illustration is drawn. */
+  var CASES = [
+    { tab: 'Whitening', title: 'Stained, uneven front teeth',
+      rows: [['Treatment', 'Whitening + bonding'], ['Sittings', '3 visits'], ['Duration', '14 days'], ['Shade change', 'A3.5 → B1']],
+      photo: { before: 'img/whitening-before.jpg', after: 'img/whitening-after.jpg' },
+      art: { colors: ['#E6C985', '#D8B66A'], rot: [-4, 3, -6, 5, -3, 7, -4, 2], dy: [6, -4, 10, 0, 8, -6, 4, 6], gap: [0, 0, 0, 0, 10, 14, 0, 0],
+             lowerRot: [5, -4, 8, -6, 4, -7, 3], lowerDy: [-6, 4, -10, 6, -4, 8, -2], stains: [2, 5, 6], missing: [], chip: -1 } },
+    { tab: 'Braces', title: 'Spaced teeth straightened with braces',
+      rows: [['Treatment', 'Metal braces'], ['Duration', '14 months'], ['Reviews', 'Every 4–6 weeks'], ['Retainer', 'Included']],
+      photo: { before: 'img/braces-before.jpg', after: 'img/braces-after.jpg' },
+      art: { colors: ['#F1EBDB', '#E2D8C0'], rot: [-12, 10, -16, 4, -4, 18, -10, 12], dy: [14, -12, 18, 0, 0, -14, 16, -8], gap: [-10, -6, 10, -18, 18, -6, 6, 10],
+             lowerRot: [14, -12, 16, -10, 12, -16, 10], lowerDy: [-10, 8, -14, 10, -8, 12, -6], stains: [], missing: [], chip: -1 } },
+    { tab: 'Implant', title: 'Missing front tooth replaced',
+      rows: [['Treatment', 'Implant + ceramic crown'], ['Sittings', '4 visits'], ['Duration', '3 months'], ['Warranty', 'Lifetime implant']],
+      photo: { before: 'img/implant-before.jpg', after: 'img/implant-after.jpg' },
+      art: { colors: ['#EFE6CF', '#DDCFA9'], rot: [0, -2, 2, 0, 0, -3, 2, 0], dy: [0, 2, -2, 0, 0, 4, 0, 2], gap: [0, 0, 0, 0, 0, 0, 0, 0],
+             lowerRot: [0, 1, -1, 0, 1, -1, 0], lowerDy: [0, 2, 0, -2, 0, 2, 0], stains: [], missing: [4], chip: 2 } }
+  ];
+
+  function smileSVG(art, isAfter, uid) {
+    var x0 = 400 - 4 * 74, s = '';
+    var palette = isAfter ? ['#FBFAF6', '#F4F3EE'] : art.colors;
+    for (var i = 0; i < 8; i++) {
+      if (!isAfter && art.missing.indexOf(i) > -1) continue;
+      var w = 70, h = (i === 3 || i === 4) ? 130 : (i === 2 || i === 5) ? 116 : (i === 1 || i === 6) ? 108 : 98;
+      var x = x0 + i * 74, y = 168;
+      var rot = isAfter ? 0 : art.rot[i], dy = isAfter ? 0 : art.dy[i], gapX = isAfter ? 0 : art.gap[i];
+      var cx = x + w / 2 + gapX, cy = y + h / 2 + dy;
+      s += '<g transform="rotate(' + rot + ' ' + cx + ' ' + cy + ')">' +
+        '<rect x="' + (x + gapX) + '" y="' + (y + dy) + '" width="' + w + '" height="' + h + '" rx="22" ry="26" fill="url(#t' + uid + ')"/>' +
+        '<rect x="' + (x + gapX + 12) + '" y="' + (y + dy + 14) + '" width="10" height="' + (h * .5) + '" rx="5" fill="#fff" opacity="' + (isAfter ? .7 : .3) + '"/>';
+      if (!isAfter && art.stains.indexOf(i) > -1) {
+        s += '<ellipse cx="' + (cx + 8) + '" cy="' + (y + dy + h - 22) + '" rx="14" ry="9" fill="#9C7A33" opacity=".55"/>';
+      }
+      if (!isAfter && i === art.chip) {
+        var bx = x + gapX + w, by = y + dy + h;
+        s += '<path d="M' + (bx + 2) + ' ' + (by - 38) + ' L' + (bx + 2) + ' ' + (by + 2) + ' L' + (bx - 34) + ' ' + (by + 2) + ' Z" fill="#1C0608"/>';
+      }
+      s += '</g>';
+    }
+    var lower = '';
+    for (var j = 0; j < 7; j++) {
+      var lx = 400 - 3.5 * 66 + j * 66, ly = 318;
+      var ldy = isAfter ? 0 : art.lowerDy[j];
+      var lrot = isAfter ? 0 : art.lowerRot[j];
+      lower += '<rect transform="rotate(' + lrot + ' ' + (lx + 31) + ' ' + (ly + 40) + ')" x="' + lx + '" y="' + (ly + ldy) + '" width="62" height="78" rx="20" fill="url(#t' + uid + ')" opacity=".92"/>';
+    }
+    var bgTop = isAfter ? '#2B5A4A' : '#4A3530', bgBot = isAfter ? '#12332A' : '#2A1C19';
+    return '<svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">' +
+      '<defs>' +
+        '<linearGradient id="bg' + uid + '" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="' + bgTop + '"/><stop offset="1" stop-color="' + bgBot + '"/></linearGradient>' +
+        '<linearGradient id="t' + uid + '" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="' + palette[0] + '"/><stop offset="1" stop-color="' + palette[1] + '"/></linearGradient>' +
+        '<radialGradient id="m' + uid + '" cx=".5" cy=".5" r=".6"><stop offset="0" stop-color="#3A0F12"/><stop offset="1" stop-color="#1C0608"/></radialGradient>' +
+        '<clipPath id="c' + uid + '"><path d="M120 238 C 230 150, 570 150, 680 238 C 610 400, 190 400, 120 238 Z"/></clipPath>' +
+      '</defs>' +
+      '<rect width="800" height="500" fill="url(#bg' + uid + ')"/>' +
+      '<path d="M90 230 C 200 110, 600 110, 710 230 C 640 430, 160 430, 90 230 Z" fill="#B85A5E"/>' +
+      '<path d="M120 238 C 230 150, 570 150, 680 238 C 610 400, 190 400, 120 238 Z" fill="url(#m' + uid + ')"/>' +
+      '<g clip-path="url(#c' + uid + ')">' +
+      '<rect x="100" y="140" width="600" height="44" fill="' + (isAfter ? '#E58C93' : '#C76A70') + '"/>' +
+      lower + s + '</g>' +
+      '<path d="M90 230 C 200 130, 340 150, 400 162 C 460 150, 600 130, 710 230 C 600 186, 470 178, 400 182 C 330 178, 200 186, 90 230 Z" fill="#C4686C"/>' +
+      '<path d="M90 230 C 160 400, 640 400, 710 230 C 650 470, 150 470, 90 230 Z" fill="#B85A5E"/>' +
+      (isAfter ? '<g fill="#fff"><path d="M560 190l5 11 11 5-11 5-5 11-5-11-11-5 11-5z" opacity=".95"/><path d="M250 200l3 7 7 3-7 3-3 7-3-7-7-3 7-3z" opacity=".8"/></g>' : '') +
+      '</svg>';
+  }
+
+  function photoOr(src, svg, alt) {
+    return src ? '<img src="' + src + '" alt="' + alt + '" draggable="false" style="width:100%;height:100%;object-fit:cover;display:block">' : svg;
+  }
+  var caseTabs = document.getElementById('caseTabs');
+  function showCase(idx) {
+    var c = CASES[idx], p = c.photo || {};
+    document.getElementById('compareBefore').innerHTML = photoOr(p.before, smileSVG(c.art, false, idx + 'B'), c.title + ', before treatment');
+    document.getElementById('compareAfter').innerHTML = photoOr(p.after, smileSVG(c.art, true, idx + 'A'), c.title + ', after treatment');
+    document.getElementById('caseTitle').textContent = c.title;
+    document.getElementById('caseRows').innerHTML = c.rows.map(function (r) { return '<div><dt>' + r[0] + '</dt><dd>' + r[1] + '</dd></div>'; }).join('');
+    document.getElementById('caseNote').textContent = p.before ? 'Illustrative images. Results vary from patient to patient.' : 'Illustration shown. Patient photos are shared at the clinic with consent.';
+    caseTabs.querySelectorAll('button').forEach(function (b, k) { b.setAttribute('aria-selected', k === idx); });
+  }
+  caseTabs.innerHTML = CASES.map(function (c, k) {
+    return '<button type="button" class="case-tab" role="tab" id="caseTab' + k + '" aria-selected="false">' + c.tab + '</button>';
+  }).join('');
+  caseTabs.querySelectorAll('button').forEach(function (b, k) {
+    b.addEventListener('click', function () {
+      showCase(k);
+      slider.classList.remove('animating'); setPct(85);
+      if (reduce) { setPct(50); return; }
+      requestAnimationFrame(function () { requestAnimationFrame(function () {
+        slider.classList.add('animating'); setPct(50);
+        setTimeout(function () { slider.classList.remove('animating'); }, 1500);
+      }); });
+    });
+  });
+  showCase(0);
+
+  /* Before / after slider */
+  var slider = document.getElementById('compareSlider');
+  var after = document.getElementById('compareAfter');
+  var line = document.getElementById('compareLine');
+  var handle = document.getElementById('compareHandle');
+  var pos = 50, dragging = false;
+
+  function setPct(pct) {
+    pos = Math.max(0, Math.min(100, pct));
+    after.style.clipPath = 'inset(0 ' + (100 - pos) + '% 0 0)';
+    line.style.left = pos + '%';
+    handle.style.left = pos + '%';
+    slider.setAttribute('aria-valuenow', Math.round(pos));
+  }
+  function setPosition(clientX) {
+    var rect = slider.getBoundingClientRect();
+    var x = Math.max(0, Math.min(clientX - rect.left, rect.width));
+    setPct((x / rect.width) * 100);
+  }
+  function start(x) { dragging = true; slider.classList.remove('animating'); setPosition(x); }
+  slider.addEventListener('mousedown', function (e) { e.preventDefault(); start(e.clientX); });
+  window.addEventListener('mousemove', function (e) { if (dragging) setPosition(e.clientX); });
+  window.addEventListener('mouseup', function () { dragging = false; });
+  slider.addEventListener('touchstart', function (e) { start(e.touches[0].clientX); }, { passive: true });
+  slider.addEventListener('touchmove', function (e) {
+    if (!dragging) return;
+    setPosition(e.touches[0].clientX);
+    if (e.cancelable) e.preventDefault();
+  }, { passive: false });
+  slider.addEventListener('touchend', function () { dragging = false; });
+  slider.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+      e.preventDefault(); slider.classList.remove('animating');
+      setPct(pos + (e.key === 'ArrowRight' ? 5 : -5));
+    }
+  });
+  setPct(50);
+
+  if ('IntersectionObserver' in window && !reduce) {
+    var demoDone = false;
+    new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting || demoDone) return;
+        demoDone = true; obs.disconnect();
+        setPct(85);
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            slider.classList.add('animating');
+            setPct(50);
+            setTimeout(function () { slider.classList.remove('animating'); }, 1500);
+          });
+        });
+      });
+    }, { threshold: 0.5 }).observe(slider);
+  }
+
+  /* Counters */
+  function runCounter(el) {
+    var target = parseFloat(el.dataset.count), dec = parseInt(el.dataset.decimals || '0', 10);
+    var suffix = el.dataset.suffix || '', steps = 50, i = 0;
+    var id = setInterval(function () {
+      i++;
+      var v = target * (1 - Math.pow(1 - i / steps, 3));
+      el.innerHTML = (dec ? v.toFixed(dec) : Math.round(v).toLocaleString('en-IN')) + '<sup>' + suffix + '</sup>';
+      if (i >= steps) clearInterval(id);
+    }, 30);
+  }
+  var nums = document.querySelectorAll('.trust-num');
+  nums.forEach(function (el) {
+    var dec = parseInt(el.dataset.decimals || '0', 10);
+    var t = parseFloat(el.dataset.count);
+    el.innerHTML = (dec ? t.toFixed(dec) : t.toLocaleString('en-IN')) + '<sup>' + el.dataset.suffix + '</sup>';
+  });
+  if ('IntersectionObserver' in window && !reduce) {
+    var countIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { runCounter(en.target); countIO.unobserve(en.target); }
+      });
+    }, { threshold: 0.6 });
+    nums.forEach(function (el) {
+      if (el.getBoundingClientRect().top > window.innerHeight) countIO.observe(el);
+    });
+  }
+
+  /* Scroll reveal: only elements still below the fold get hidden, then fade in */
+  if ('IntersectionObserver' in window && !reduce) {
+    var revealIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.remove('pending'); revealIO.unobserve(en.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(function (el, idx) {
+      if (el.getBoundingClientRect().top > window.innerHeight) {
+        el.classList.add('pending');
+        el.style.transitionDelay = (idx % 4) * 80 + 'ms';
+        revealIO.observe(el);
+      }
+    });
+  }
+})();
+</script>

@@ -1,0 +1,4 @@
+dist/
+.vercel/
+# Original full-size source images (cropped copies live in img/)
+Image/
