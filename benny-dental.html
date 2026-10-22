@@ -385,7 +385,8 @@ footer .bottom { display: flex; flex-wrap: wrap; justify-content: space-between;
 @media (min-width: 861px) { .nav-links li.m-cta { display: none; } }
 @media (max-width: 560px) {
   .service-grid { grid-template-columns: 1fr; }
-  .hero-ctas .btn { flex: 1 1 100%; }
+  .hero-ctas { flex-wrap: nowrap; gap: 10px; }
+  .hero-ctas .btn { flex: 1 1 0; padding: 13px 12px; font-size: 14px; }
   .cta-btns { width: 100%; }
   .cta-btns .btn { flex: 1 1 100%; }
   .compare { aspect-ratio: 4 / 3; }
@@ -441,6 +442,9 @@ footer .bottom { display: flex; flex-wrap: wrap; justify-content: space-between;
   transform: translateX(-160%) skewX(-20deg); animation: shine 4s 2s ease-in-out infinite;
 }
 .cta .btn-gold, .mobile-bar .btn-gold { animation: ring 2.4s ease-out infinite; }
+/* Hero buttons stay plain: no glow or shine */
+.hero-ctas .btn-gold { box-shadow: none; }
+.hero-ctas .btn-gold::after { content: none; }
 
 .service .icon { transition: transform .45s cubic-bezier(.3, 1.6, .5, 1), background .3s, color .3s; }
 .service:hover .icon { transform: rotate(-8deg) scale(1.12); background: var(--accent); color: #fff; }
@@ -520,7 +524,7 @@ footer .bottom { display: flex; flex-wrap: wrap; justify-content: space-between;
       <h1>Your best smile, <em>without</em> the fear.</h1>
       <p class="hero-sub">Gentle, painless dentistry in Karaikudi by <strong>Dr. Benny, BDS, MDS</strong>. Digital X-rays, sterilised single-use kits and clear pricing before any treatment begins.</p>
       <div class="hero-ctas">
-        <a href="tel:+919876543210" class="btn btn-gold"><svg><use href="#i-phone"/></svg>Call +91 98765 43210</a>
+        <a href="tel:+919876543210" class="btn btn-gold"><svg><use href="#i-phone"/></svg>Call Now</a>
         <a href="https://wa.me/919876543210?text=Hi%20Benny%20Dental%2C%20I%27d%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener" class="btn btn-ghost"><svg><use href="#i-wa"/></svg>WhatsApp Us</a>
       </div>
       <div class="hero-stats">
