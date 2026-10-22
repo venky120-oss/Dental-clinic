@@ -279,10 +279,12 @@ nav.site.scrolled .hamburger { color: var(--fg); }
   position: relative; aspect-ratio: 4 / 5; max-width: 100%; border-radius: 28px; background: var(--ink); overflow: visible;
 }
 .why-visual .inner { position: absolute; inset: 0; border-radius: inherit; overflow: hidden;
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; padding: 24px; text-align: center;
-  background: radial-gradient(70% 60% at 50% 30%, rgba(26, 122, 94, .45), transparent 70%), var(--ink); }
-.why-visual .inner svg { width: clamp(72px, 22%, 120px); height: auto; flex: none; }
-.why-visual .doc { color: var(--on-ink); display: grid; gap: 4px; }
+  background: radial-gradient(70% 60% at 50% 30%, rgba(26, 122, 94, .55), transparent 70%), var(--ink); }
+.why-visual .doc-photo { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: 50% 0; }
+.why-visual .doc {
+  position: absolute; left: 0; right: 0; bottom: 0; padding: 70px 24px 22px; color: var(--on-ink); display: grid; gap: 4px;
+  background: linear-gradient(to bottom, transparent, rgba(6, 11, 9, .92) 55%);
+}
 .why-visual .doc b { font-family: var(--font-display); font-size: 26px; font-weight: 600; }
 .why-visual .doc span { font-size: 13px; color: var(--on-ink-muted); letter-spacing: .04em; }
 .why-badge {
@@ -372,7 +374,7 @@ footer .bottom { display: flex; flex-wrap: wrap; justify-content: space-between;
   .trust-grid div + div { border-left: 0; }
   .review-grid { grid-template-columns: 1fr; }
   .why .wrap { grid-template-columns: 1fr; }
-  .why-visual { aspect-ratio: 16 / 11; }
+  .why-visual { aspect-ratio: 4 / 4.2; }
   .why-badge { display: none; }
 }
 @media (min-width: 861px) { .nav-links li.m-cta { display: none; } }
@@ -451,7 +453,6 @@ footer .bottom { display: flex; flex-wrap: wrap; justify-content: space-between;
 .case-tab { transition: background .25s, color .25s, border-color .25s, transform .2s; }
 .case-tab:active { transform: scale(.95); }
 
-.why-visual .inner svg { animation: floatY 5s ease-in-out infinite; }
 .spark {
   position: absolute; width: 16px; height: 16px; background: var(--accent-2); opacity: 0;
   clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%);
@@ -660,13 +661,7 @@ footer .bottom { display: flex; flex-wrap: wrap; justify-content: space-between;
     <div class="wrap">
       <div class="why-visual reveal">
         <div class="inner">
-          <span class="spark s1" aria-hidden="true"></span><span class="spark s2" aria-hidden="true"></span><span class="spark s3" aria-hidden="true"></span>
-          <svg viewBox="0 0 200 220" aria-hidden="true">
-            <defs>
-              <linearGradient id="toothG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9E7E1"/></linearGradient>
-            </defs>
-            <path d="M100 38C88 26 72 18 56 18 32 18 20 38 20 60c0 24 10 38 15 60 6 24 7 82 26 82 17 0 16-48 39-48s22 48 39 48c19 0 20-58 26-82 5-22 15-36 15-60 0-22-12-42-36-42-16 0-32 8-44 20z" fill="url(#toothG)"/>
-          </svg>
+          <img class="doc-photo" src="img/doctor.png" alt="Dr. Benny" width="720" height="630" loading="lazy">
           <div class="doc"><b>Dr. Benny, BDS, MDS</b><span>Prosthodontist &amp; implantologist · 12 years</span></div>
         </div>
         <div class="why-badge b1"><span class="ic"><svg><use href="#i-shield"/></svg></span><div><b>ISO Certified</b><span>Class-B autoclave sterilisation</span></div></div>
