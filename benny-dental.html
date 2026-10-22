@@ -195,15 +195,15 @@ nav.site.scrolled .hamburger { color: var(--fg); }
 .service-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
 .service {
   display: grid; align-content: start; gap: 14px; padding: 30px 26px 28px;
-  border-radius: var(--radius); background: var(--accent-2); border: 1px solid #C2953F; color: var(--accent-2-ink);
+  border-radius: var(--radius); background: #133A30; border: 1px solid #1F5245; color: #F4EEDF;
   transition: transform .25s, border-color .25s, box-shadow .25s; min-width: 0;
 }
-.service:hover { transform: translateY(-6px); border-color: var(--accent-2-ink); box-shadow: var(--shadow); }
-.service .icon { width: 56px; height: 56px; border-radius: 16px; background: #E8C77F; color: var(--accent-2-ink); display: grid; place-items: center; }
+.service:hover { transform: translateY(-6px); border-color: var(--accent-2); box-shadow: var(--shadow); }
+.service .icon { width: 56px; height: 56px; border-radius: 16px; background: var(--accent-2); color: var(--accent-2-ink); display: grid; place-items: center; }
 .service .icon svg { width: 28px; height: 28px; }
 .service h3 { font-size: 26px; margin-top: 6px; }
-.service p { color: var(--accent-2-ink); font-size: 15px; }
-.service .meta { margin-top: 6px; font-size: 13px; font-weight: 600; color: var(--accent-2-ink); display: flex; align-items: center; gap: 6px; }
+.service p { color: #C9DCD3; font-size: 15px; }
+.service .meta { margin-top: 6px; font-size: 13px; font-weight: 600; color: #E6C171; display: flex; align-items: center; gap: 6px; }
 
 /* Before / After */
 .results { background: var(--bg); }
@@ -441,7 +441,7 @@ footer .bottom { display: flex; flex-wrap: wrap; justify-content: space-between;
 .hero-ctas .btn-gold::after, .cta-btns .btn-gold::after { content: none; }
 
 .service .icon { transition: transform .45s cubic-bezier(.3, 1.6, .5, 1), background .3s, color .3s; }
-.service:hover .icon { transform: rotate(-8deg) scale(1.12); background: var(--accent-2-ink); color: var(--accent-2); }
+.service:hover .icon { transform: rotate(-8deg) scale(1.12); background: #F4EEDF; color: #133A30; }
 .review { transition: transform .3s, box-shadow .3s, border-color .3s; }
 .review:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: var(--accent); }
 .why-num { transition: color .5s; }
