@@ -319,8 +319,6 @@ nav.site.scrolled .hamburger { color: var(--fg); }
 .contact-item .ic svg { width: 19px; height: 19px; }
 .contact-item small { display: block; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--on-ink-muted); }
 .contact-item b { font-weight: 500; user-select: all; -webkit-user-select: all; }
-.copy-btn { margin-left: 8px; background: none; border: 1px solid rgba(232, 240, 236, .25); color: var(--on-ink-muted); font: 500 11px/1 var(--font-body); padding: 5px 9px; border-radius: 99px; cursor: pointer; vertical-align: 2px; }
-.copy-btn:hover { color: var(--on-ink); border-color: var(--on-ink); }
 
 /* Footer */
 footer { background: #050907; color: #8FA39A; padding-block: 48px 28px; }
@@ -697,7 +695,7 @@ footer .bottom { display: flex; flex-wrap: wrap; justify-content: space-between;
         <a href="https://wa.me/919876543210?text=Hi%20Benny%20Dental%2C%20I%27d%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener" class="btn btn-ghost"><svg><use href="#i-wa"/></svg>WhatsApp Us</a>
       </div>
       <div class="contact-row">
-        <div class="contact-item"><span class="ic"><svg><use href="#i-phone"/></svg></span><div><small>Phone &amp; WhatsApp</small><b id="phoneText">+91 98765 43210</b><button class="copy-btn" id="copyPhone" type="button">Copy</button></div></div>
+        <div class="contact-item"><span class="ic"><svg><use href="#i-phone"/></svg></span><div><small>Phone &amp; WhatsApp</small><b>+91 98765 43210</b></div></div>
         <div class="contact-item"><span class="ic"><svg><use href="#i-pin"/></svg></span><div><small>Address</small><b>12, Anna Salai, Karaikudi, Tamil Nadu 630001</b></div></div>
         <div class="contact-item"><span class="ic"><svg><use href="#i-clock"/></svg></span><div><small>Timings</small><b>Mon–Sat, 9 AM – 8 PM · Sunday closed</b></div></div>
       </div>
@@ -747,20 +745,6 @@ footer .bottom { display: flex; flex-wrap: wrap; justify-content: space-between;
   hb.addEventListener('click', function () { setMenu(!nav.classList.contains('open')); });
   document.querySelectorAll('#navLinks a').forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
 
-  /* Copy phone number */
-  var copyBtn = document.getElementById('copyPhone');
-  copyBtn.addEventListener('click', function () {
-    var text = document.getElementById('phoneText').textContent;
-    function selectIt() {
-      var r = document.createRange(); r.selectNodeContents(document.getElementById('phoneText'));
-      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
-      copyBtn.textContent = 'Selected';
-    }
-    try {
-      navigator.clipboard.writeText(text).then(function () { copyBtn.textContent = 'Copied'; }, selectIt);
-    } catch (e) { selectIt(); }
-    setTimeout(function () { copyBtn.textContent = 'Copy'; }, 2000);
-  });
 
   /* Before / after cases.
      To show real clinic photos, put an image path or data: URI in photo.before / photo.after
