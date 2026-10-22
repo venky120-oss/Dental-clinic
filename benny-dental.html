@@ -18,7 +18,9 @@
   --fg: #0E1A16;
   --fg-muted: #4A5A54;
   --line: #DCE3E0;
-  --ink: #0E1A16;          /* dark bands stay dark in both themes */
+  --card: #EEF6F2;         /* teal-tinted service cards */
+  --card-line: #D3E7DE;
+  --ink: #0E1A16;         /* dark bands stay dark in both themes */
   --ink-2: #13221C;
   --on-ink: #E8F0EC;
   --on-ink-muted: #9DB2A9;
@@ -32,7 +34,7 @@
   :root:not([data-theme="light"]) {
     --accent: #3FB58D; --accent-strong: #5CCBA4; --accent-light: #15302A;
     --bg: #0A110E; --bg-alt: #0F1814; --surface: #162019;
-    --fg: #E8F0EC; --fg-muted: #A3B5AD; --line: #24332C;
+    --fg: #E8F0EC; --fg-muted: #A3B5AD; --line: #24332C; --card: #173A2F; --card-line: #25503F;
     --ink: #060B09; --ink-2: #0D1712;
     --shadow: 0 18px 40px -18px rgba(0, 0, 0, .7);
     color-scheme: dark;
@@ -41,7 +43,7 @@
 :root[data-theme="dark"] {
   --accent: #3FB58D; --accent-strong: #5CCBA4; --accent-light: #15302A;
   --bg: #0A110E; --bg-alt: #0F1814; --surface: #162019;
-  --fg: #E8F0EC; --fg-muted: #A3B5AD; --line: #24332C;
+  --fg: #E8F0EC; --fg-muted: #A3B5AD; --line: #24332C; --card: #173A2F; --card-line: #25503F;
   --ink: #060B09; --ink-2: #0D1712;
   --shadow: 0 18px 40px -18px rgba(0, 0, 0, .7);
   color-scheme: dark;
@@ -194,11 +196,11 @@ nav.site.scrolled .hamburger { color: var(--fg); }
 .service-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
 .service {
   display: grid; align-content: start; gap: 14px; padding: 30px 26px 28px;
-  border-radius: var(--radius); background: var(--bg); border: 1px solid var(--line);
+  border-radius: var(--radius); background: var(--card); border: 1px solid var(--card-line);
   transition: transform .25s, border-color .25s, box-shadow .25s; min-width: 0;
 }
 .service:hover { transform: translateY(-6px); border-color: var(--accent); box-shadow: var(--shadow); }
-.service .icon { width: 56px; height: 56px; border-radius: 16px; background: var(--accent-light); color: var(--accent); display: grid; place-items: center; }
+.service .icon { width: 56px; height: 56px; border-radius: 16px; background: var(--surface); color: var(--accent); display: grid; place-items: center; }
 .service .icon svg { width: 28px; height: 28px; }
 .service h3 { font-size: 26px; margin-top: 6px; }
 .service p { color: var(--fg-muted); font-size: 15px; }
